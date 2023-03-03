@@ -1,2 +1,2 @@
 # Aarsoppgave
-Hei :D dete er mien arsoppgave :DD hehehe
+Hei, dette er min "Årsoppgave" for første termin
