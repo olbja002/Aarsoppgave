@@ -1,0 +1,13 @@
+
+.product_container {
+    display: flex;
+    flex-flow: row;
+}
+
+.product {
+    width: 100px;
+    height: 100px;
+    background-color: lightgreen;
+    border-style: solid;
+    margin: 10px;
+}

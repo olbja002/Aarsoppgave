@@ -6,8 +6,12 @@ $mysqliDebug = true;
 
 //$con = new mysqli("localhost","someuser","usersome", "SOME");
 
-$con = new mysqli("localhost","admin","oledole", "SOME");
+echo "test"; //testing
 
+include "connect.php";
+
+$con = $dbc;
+// echo $con; //testing
 
 if ($con->connect_errno) {
         echo 'There was an error connecting to the database!';
@@ -20,10 +24,12 @@ if ($con->connect_errno) {
     }
 
 				    
+    
+    
 $con->set_charset("utf8");	// utf-8 for å få med æøå
 
 
-
+$hashedPassord = password_hash($_POST['passw'], PASSWORD_DEFAULT);
 
 
 //******* Parametere fra html side *****************************************************					
@@ -32,12 +38,13 @@ $firstname		= $con->real_escape_string($_POST['firstname']);
 $lastname 		= $con->real_escape_string($_POST['lastname']);					
 $nickname 		= $con->real_escape_string($_POST['nickname']);
 $email 			= $con->real_escape_string($_POST['email']);
-$passw	 		= $con->real_escape_string($_POST['passw']);
+$passw	 		= $con->real_escape_string($hashedPassord);
+
 
 
 //******* SQL ***********
-$sql = "REPLACE INTO users(first_name,last_name,nickname,email,md5_pass) \n"
- 		." VALUES(\"".$firstname."\"  ,\"".$lastname."\"   ,\"".$nickname."\"    ,\"".$email."\"      ,\"".$passw."\"  )\n";
+$sql = "INSERT INTO users(first_name,last_name,nickname,email,md5_pass) \n"
+ 	." VALUES(\"".$firstname."\"  ,\"".$lastname."\"   ,\"".$nickname."\"    ,\"".$email."\"      ,\"".$passw."\"  )\n";
 
 $result = $con->query($sql);
 

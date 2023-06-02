@@ -1,107 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<script src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="md5.js"></script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Homepage</title>
 </head>
-
-
 <body>
+	<a href="index.html">Homepage</a>
+	<a href="register.html">Registration</a>
 
-<h2>Create user:</h2>
-<label for="firstname">First name:</label>
-<input type="text" id="firstname" name="firstname"><br><br>
-
-
-<label for="lastnamename">Last name:</label>
-<input type="text" id="lastname" name="lastname"><br><br>
-
-
-<label for="nickname">Nickname:</label>
-<input type="text" id="nickname" name="nickname"><br><br>
-
-<label for="email">Email:</label>
-<input type="text" id="email" name="email"><br><br>
-
-<label for="passw">Password:</label>
-<input type="text" id="passw" name="passw"><br><br>
-
-<button id=submit_new_user onclick="submit_new_user()">Submit</button>
-
-<br><br>
-
-
-
-<script>
-
-	// document.getElementById("submit_new_user").disabled = true;   //disabler submit knapp
-	
-//-----------------------------------------------------------------------------------------------------------------
-
-function submit_new_user(){
-
-	var firstname 	= document.getElementById("firstname").value;		
-	var lastname	= document.getElementById("lastname").value;
-	var nickname	= document.getElementById("nickname").value;
-	var email		= document.getElementById("email").value;
-	var passw		= md5(document.getElementById("passw").value);
-
-	
-	//Lage objekt vi skal sende til php script.
-	var dataObjectNewUser = { 	firstname		:	firstname,
-								lastname 		:	lastname,						
-								nickname 		:	nickname,
-								email 			:	email,
-								passw 		    :	passw
-								};
-		
-
-	postDataNewUser(dataObjectNewUser);
-
-}
-//--------------------------------------------------------------------------------------------------------------------------------------------
-
-function postDataNewUser(dataobj){
-			
-						
-						$.ajax({ type: "POST",
-								 								
- 								url	: "some_register_new_user2.php",  
-								data	: dataobj,				//objektet med variabler vi sender over til php script
-								cache	: false,
-								success	: function(response)			
-								{									
-									 console.log(response);   		//Bra å sjekke respons i console når man utvikler	  
-									 clear_textboxes();	 		 //Kjør funksjon som blanker tekstbokser	
-
-								}
-							});
-					
-					
-
-
-					}
-
-
-	
-//--------------------------------------------------------------------------------------------------------------------------------------------
-
-
-function clear_textboxes(){
-		
-	document.getElementById("firstname").value  = "";		
-	document.getElementById("lastname").value = "";	
-	document.getElementById("nickname").value  = "";		
-	document.getElementById("email").value = "";	
-	document.getElementById("passw").value = "";	
-
-
-	
-}
-//------------------------------------------------------------------------------------------------
-
-
-</script>
-
+	<form action="login.php" method="post">
+		<h2>Login</h2>
+		<label for="nickname">Username:</label>
+		<input name="nickname" type="text">
+		<br><br>
+		<label for="md5_pass">Password:</label>
+		<input name="md5_pass" type="password">
+		<input type="submit" value="Login">
+	</form>
+	<script src="script2.js"></script>
 </body>
 </html>
